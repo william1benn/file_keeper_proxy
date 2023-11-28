@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package messaging_pb;
+
+option go_package = "./proto";
+
+service S3Service {
+
+  rpc StoreFileS3 (S3FileStoreRequest) returns (S3FileStoreResponse) {
+  }
+  rpc GetFileS3 (S3GetFileData) returns (S3ResponseFileData) {
+  }
+
+}
+
+message S3FileStoreRequest{
+  string key = 1;
+  bytes file_data = 2;
+}
+
+message S3FileStoreResponse{
+  bool success = 1;
+}
+
+message S3GetFileData {
+  string file_name = 1;
+}
+
+message S3ResponseFileData {
+  bytes file_data = 1;
+}
